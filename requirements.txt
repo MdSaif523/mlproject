@@ -1,0 +1,6 @@
+numpy 
+pandas
+seaborn
+matplotlib
+-e . #--> This '-e .' is basically mapped to 'setup.py' file. This is an indication that 
+# setup.py file is there and automatically these entire package of 'setup.py' is get build.

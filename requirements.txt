@@ -2,6 +2,9 @@ numpy
 pandas
 seaborn
 matplotlib
+scikit-learn
+catboost
+xgboost
 -e . # '-e .' means: Install the Python project located in the current directory[setup.py] in editable mode.
 
  #--> This '-e .' is basically mapped to 'setup.py' file. This is an indication that 

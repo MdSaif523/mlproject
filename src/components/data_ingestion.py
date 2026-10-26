@@ -19,9 +19,8 @@ from sklearn.model_selection import train_test_split
 from src.exception import CustomException
 from src.logger import logging
 from src.components.data_transformation import DataTransformation
-from src.components.data_transformation import DataTransformationConfig
 
-from src.components.model_trainer import ModelTrainerConfig,ModelTrainer
+from src.components.model_trainer import ModelTrainer
 
 @dataclass
 class DataIngestionConfig:

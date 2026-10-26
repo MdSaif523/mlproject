@@ -49,7 +49,45 @@ class ModelTrainer:
                 "Adaboost Regressor":AdaBoostRegressor(),
             }
 
-            model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models=models)
+            params={
+                "Decision Tree":{
+                    'criterion':['squared_error','friedman_mse','absolute_error','poisson'],
+                    'splitter':['best','random'],
+                    'max_features':['sqrt','log2']
+                },
+                "Random Forest":{
+                    'criterion':['squared_error','friedman_mse','absolute_error','poisson'],
+                    'max_features':['sqrt','log2',None],
+                    'n_estimators':[8,16,32,64,128,256]
+                },
+                "Gradient Boosting":{
+                    'criterion':['squared_error','friedman_mse','absolute_error','poisson'],
+                    'max_features':['sqrt','log2',None],
+                    'n_estimators':[8,16,32,64,128,256],
+                    'learning_rate':[.1,0.01,.05,.001]
+                },
+                "Linear Regression":{},
+                "K-Neighbour Regressor":{
+                    'n_neighbour':[5,7,9,11],
+                    'weights':['uniform','distance']
+                },
+                "XGBRegressor":{
+                    'learning_rate':[.1,0.01,.05,0.001],
+                    'n_estimators':[8,16,32,64,128,256]
+                },
+                "CatBoosting Regressor":{
+                    'depth':[6,8,10],
+                    'learning_rate':[.1,0.01,.05,0.001],
+                    'iterations':[30,50,100]
+                },
+                "AdaBoost Regressor":{
+                    'learning_rate':[.1,0.01,.05,0.001],
+                    'n_estimators':[8,16,32,64,128,256]
+                },
+
+            }
+            model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=X_test,
+            y_test=y_test,models=models,params=params)
             
             ## To get best model score from dict
             best_model_score=max(sorted(model_report.values()))

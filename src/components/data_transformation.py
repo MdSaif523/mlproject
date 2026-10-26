@@ -16,7 +16,7 @@ from src.utils import save_object
 
 @dataclass #-> This decorator 'dataclass' mainly used for assigning the variable .
 class DataTransformationConfig:
-    preprocessor_obj_file_path=os.path.join("artifacts","preprocessor.pkl")
+    preprocessor_obj_file_path=os.path.join('artifacts',"preprocessor.pkl")
 
 
 class DataTransformation:
@@ -27,7 +27,7 @@ class DataTransformation:
     # This function is responsible for creating all my pickle files which use for converting 'categorical' to 'numerical' features.
 
         try:
-            numerical_columns = ['math_score', 'reading_score', 'writing_score']
+            numerical_columns = ['reading_score','writing_score']
             categorical_columns =['gender', 'race/ethnicity', 'parental level of education', 'lunch', 'test preparation course']
 
             num_pipeline=Pipeline( # Pipeline allows you to sequentially apply a list of transformers to preprocess the data.
@@ -79,21 +79,14 @@ class DataTransformation:
             target_column_name = "math_score"
 
             numerical_columns = [
-            "math_score",
             "reading_score",
             "writing_score"
             ]
 
-            input_features_train_df = train_df.drop(
-            train_df.drop([target_column_name], axis=1)
-            )
-
+            input_features_train_df = train_df.drop(columns=[target_column_name])
             target_feature_train_df = train_df[target_column_name]
 
-            input_features_test_df = test_df.drop(
-            test_df.drop([target_column_name], axis=1)
-            )
-
+            input_features_test_df = test_df.drop(columns=[target_column_name])
             target_feature_test_df = test_df[target_column_name]
 
             logging.info(f"Applying preprocessing objects on training dataframe and testing dataframe.")
@@ -101,12 +94,10 @@ class DataTransformation:
             input_features_train_arr=preprocessing_obj.fit_transform(input_features_train_df)
             input_features_test_arr=preprocessing_obj.transform(input_features_test_df)
 
-
             # Add both training input array and training target array.
             train_array=np.c_[
                 input_features_train_arr,np.array(target_feature_train_df)
             ]
-
 
              # Add both test input array and test target array.
             test_array=np.c_[ # 'np.c_'--> Combining with the help of Numpy.

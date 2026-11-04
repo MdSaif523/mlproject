@@ -43,7 +43,7 @@ class DataTransformation:
                 
             steps=[
                 ("imputer",SimpleImputer(strategy="most_frequent")),
-                ("onehotEncoder",OneHotEncoder()), # Used for converting categ to numeric-features.
+                ("onehotEncoder",OneHotEncoder(handle_unknown="ignore", sparse_output=False)), # Used for converting categ to numeric-features.
                 ("scaler",StandardScaler()) # Used for numeric-features.
             ]
 
@@ -120,4 +120,3 @@ class DataTransformation:
         
         except Exception as e:
             raise CustomException(e,sys)
-

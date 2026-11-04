@@ -14,7 +14,7 @@ def save_object(file_path,obj):
 
         os.makedirs(dir_path,exist_ok=True) # make directory of that directory_path.
 
-        with open(file_path,"wb") as file_obj:
+        with open(file_path,"rb") as file_obj:
             dill.dump(obj,file_obj)
 
     except Exception as e:
@@ -31,7 +31,7 @@ def evaluate_models(X_train,X_test,y_train,y_test,models,params):
             para=params[list(models.keys())[i]]
 
             #Applying 'gridsearch CV' for Hyperparameter Tuning for best models.
-            gs=GridSearchCV(models,para,cv=3)
+            gs=GridSearchCV(model,para,cv=3)
             gs.fit(X_train,y_train)
 
             model.set_params(**gs.best_params_)
@@ -45,7 +45,7 @@ def evaluate_models(X_train,X_test,y_train,y_test,models,params):
 
             test_model_score=r2_score(y_test,y_test_pred)
 
-            report[list(model.keys())[i]]=test_model_score
+            report[list(models.keys())[i]]=test_model_score
         
         return report
 

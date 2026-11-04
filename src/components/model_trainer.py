@@ -42,11 +42,11 @@ class ModelTrainer:
                 "Random Forest":RandomForestRegressor(),
                 "Decision Tree":DecisionTreeRegressor(),
                 "Gradient Boosting":GradientBoostingRegressor(),
-                "Linear regression":LinearRegression(),
+                "Linear Regression":LinearRegression(),
                 "K-Neighbour Regressor":KNeighborsRegressor(),
-                "XGBregressor":XGBRegressor(),
-                "CatBoosting regression": CatBoostRegressor(verbose=False),
-                "Adaboost Regressor":AdaBoostRegressor(),
+                "XGBRegressor":XGBRegressor(),
+                "CatBoosting Regressor": CatBoostRegressor(verbose=False),
+                "AdaBoost Regressor":AdaBoostRegressor(),
             }
 
             params={
@@ -68,7 +68,7 @@ class ModelTrainer:
                 },
                 "Linear Regression":{},
                 "K-Neighbour Regressor":{
-                    'n_neighbour':[5,7,9,11],
+                    'n_neighbors':[5,7,9,11],
                     'weights':['uniform','distance']
                 },
                 "XGBRegressor":{
@@ -111,8 +111,8 @@ class ModelTrainer:
 
             predicted=best_model.predict(X_test)
 
-            r2_score=r2_score(y_test,predicted)
-            return r2_score
+            test_score=r2_score(y_test,predicted)
+            return test_score
 
         except Exception as e:
             raise CustomException(e,sys)

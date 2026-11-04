@@ -1,3 +1,4 @@
+#WHILE CREATING VIRTUAL ENVIRONMENT, WE NEED TO USE PYTHON 3.10 
 numpy 
 pandas
 seaborn
@@ -11,3 +12,4 @@ Flask
 
  #--> This '-e .' is basically mapped to 'setup.py' file. This is an indication that 
 # setup.py file is there and automatically these entire package of 'setup.py' is get build.
+

@@ -1,12 +1,11 @@
 import logging
 import os
-from datetime import datetime
 
-LOG_FILE=f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
-LOG_PATH=os.path.join(os.getcwd(),LOG_FILE)
-os.makedirs(LOG_PATH,exist_ok=True)
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LOG_PATH = os.path.join(PROJECT_ROOT, "logs")
+LOG_FILE_PATH = os.path.join(LOG_PATH, "mlproject.log")
 
-LOG_FILE_PATH=os.path.join(LOG_PATH,LOG_FILE)
+os.makedirs(LOG_PATH, exist_ok=True)
 
 logging.basicConfig(
     filename=LOG_FILE_PATH,
